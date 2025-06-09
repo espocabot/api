@@ -1,14 +1,22 @@
 {
   "name": "@spark/api",
   "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy --minify",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    "dev": "wrangler dev src/server.ts --port 8787",
+    "deploy": "wrangler deploy --minify src/server.ts",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "lint": "biome check --write .",
+    "check-types": "tsc"
   },
   "dependencies": {
-    "hono": "^4.7.11"
+    "hono": "^4.7.11",
+    "i18next": "^25.2.1",
+    "zod": "^3.25.56"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250607.0",
+    "@spark/tsconfig": "workspace:*",
+    "@types/bun": "^1.2.15",
+    "typescript": "^5.8.3",
     "wrangler": "^4.4.0"
   }
 }

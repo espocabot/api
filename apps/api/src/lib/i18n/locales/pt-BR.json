@@ -1,0 +1,10 @@
+{
+  "playtime": "{{hours}} horas.",
+  "social": {
+    "steam": {
+      "error": {
+        "playtime": "Falha ao buscar tempo de jogo para steamId: {{steamId}} e appId: {{appId}}"
+      }
+    }
+  }
+}

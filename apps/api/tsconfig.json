@@ -1,14 +1,24 @@
 {
+  "extends": "@spark/tsconfig/base.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "strict": true,
-    "skipLibCheck": true,
-    "lib": [
-      "ESNext"
+    "outDir": "./dist",
+    "types": [
+      "@cloudflare/workers-types",
+      "bun-types"
     ],
-    "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
   },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
