@@ -1,5 +1,6 @@
 {
   "name": "@spark/api",
+  "type": "module",
   "scripts": {
     "dev": "wrangler dev src/server.ts --port 8787",
     "deploy": "wrangler deploy --minify src/server.ts",

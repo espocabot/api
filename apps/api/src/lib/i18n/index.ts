@@ -6,12 +6,14 @@ import ptBR from "./locales/pt-BR.json" with { type: "json" };
 
 export const defaultNS = "translation";
 
+export type SupportedLanguages = "en-US" | "pt-BR";
+
 export const resources = {
 	translation: enUS,
 } as const;
 
 await i18next.init({
-	fallbackLng: "en",
+	fallbackLng: "en-US",
 	defaultNS,
 	resources: {
 		"en-US": { translation: enUS },

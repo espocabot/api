@@ -6,6 +6,8 @@ export type HonoEnv = {
 	};
 	Bindings: {
 		STEAM_WEB_API_KEY: string;
-		ESPOCABOT_SPARK_API_CACHE: KVNamespace;
+		TIKTOK_CLIENT_KEY: string;
+		TIKTOK_CLIENT_SECRET_KEY: string;
+		KV: KVNamespace;
 	};
 };

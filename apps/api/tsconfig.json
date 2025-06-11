@@ -6,7 +6,6 @@
       "@cloudflare/workers-types",
       "bun-types"
     ],
-    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [

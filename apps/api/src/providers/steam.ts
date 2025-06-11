@@ -1,14 +1,29 @@
-import { getEnvs } from "@/lib/env";
-import { getKV, setKV } from "@/lib/kv";
-import { logger } from "@/lib/logger";
+import { interpolate } from "@/helpers/formatters.ts";
+import { getTimeInfoFromMinutes } from "@/helpers/timers.ts";
+import { getEnvs } from "@/lib/env.ts";
+import { getKV, setKV } from "@/lib/kv.ts";
+import { logger } from "@/lib/logger.ts";
+import { getTranslator } from "@/lib/translator.ts";
 import { z } from "zod/v4-mini";
 
 const DEFAULT_TTL_TIME = 2 * 60 * 60; // 2 hours
 
 const playtimeSchema = z.object({
-	playtime_hours: z.number(),
-	playtime_minutes: z.number(),
+	playtimeMinutes: z.number(),
 });
+
+type PlaytimeTextFormat =
+	| "standard"
+	| "compact"
+	| "detailed"
+	| "compact-with-seconds"
+	| "extended"
+	| "minimal"
+	| "full"
+	| "short-time"
+	| "precise"
+	| "casual"
+	| "custom";
 
 type PlaytimeData = z.infer<typeof playtimeSchema>;
 
@@ -61,9 +76,8 @@ export class SteamProvider {
 			throw new Error("No games found for the given Steam ID and App ID.");
 		}
 
-		const data = {
-			playtime_hours: Math.round(firstGame.playtime_forever / 60),
-			playtime_minutes: firstGame.playtime_forever,
+		const data: PlaytimeData = {
+			playtimeMinutes: firstGame.playtime_forever,
 		};
 
 		logger("Fetched data from Steam API:", JSON.stringify(data));
@@ -73,5 +87,29 @@ export class SteamProvider {
 		});
 
 		return data;
+	}
+
+	getPlaytimeText(
+		playtimeMinutes: number,
+		gameTitle: string,
+		format: PlaytimeTextFormat = "standard",
+		customText = "{totalHours}h {totalMinutes}m",
+	) {
+		const timeInfoFromMinutes = getTimeInfoFromMinutes(playtimeMinutes);
+		const t = getTranslator();
+
+		if (format === "custom") {
+			logger("Custom format used:", customText);
+			return interpolate(customText, timeInfoFromMinutes);
+		}
+
+		const key = `social.steam.hours.${format}` as const;
+
+		logger(
+			`Using format key: ${key} with time info: ${JSON.stringify(
+				timeInfoFromMinutes,
+			)} and game title: ${gameTitle}`,
+		);
+		return t(key, { ...timeInfoFromMinutes, gameTitle });
 	}
 }

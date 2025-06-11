@@ -1,2 +1,6 @@
-##### STEAM #####
+##### STEAM (https://steamcommunity.com/dev) #####
 STEAM_WEB_API_KEY=""
+
+##### TIKTOK (https://developers.tiktok.com/) #####
+TIKTOK_API_CLIENT_KEY=""
+TIKTOK_API_SECRET_KEY=""

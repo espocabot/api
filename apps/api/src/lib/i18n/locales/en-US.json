@@ -1,9 +1,30 @@
 {
-  "playtime": "{{hours}} hours.",
   "social": {
     "steam": {
+      "hours": {
+        "standard": "{{totalHours}} hours.",
+        "compact": "{{totalHours}}h {{totalMinutes}}m",
+        "detailed": "{{totalHours}} hours and {{totalMinutes}} minutes played",
+        "compact-with-seconds": "{{totalHours}}h {{totalMinutes}}m {{totalSeconds}}s",
+        "extended": "{{totalDays}} days, {{totalHoursMinusDays}} hours and {{totalMinutesMinusHours}} minutes played in {{gameTitle}}",
+        "minimal": "{{totalHours}}h",
+        "full": "{{totalDays}} days, {{totalHoursMinusDays}} hours, {{totalMinutesMinusHours}} minutes and {{totalSecondsMinusMinutes}} seconds played in {{gameTitle}}",
+        "short-time": "{{totalHours}}:{{totalMinutes}}",
+        "precise": "{{totalHours}}h {{totalMinutes}}m {{totalSeconds}}s",
+        "casual": "{{totalHours}} hours and {{totalMinutes}} min"
+      },
       "error": {
         "playtime": "Failed to fetch playtime for steamId: {{steamId}} and appId: {{appId}}"
+      }
+    },
+    "tiktok": {
+      "latest-video-text": {
+        "default": "Check out my latest video on TikTok! URL: {{url}}",
+        "with-emoji": "🎥 Latest TikTok: {{title}} | ❤️ {{likes}} | 👀 {{views}} | 💬 {{comments}} | 🔗 {{shares}} | Watch: {{url}}",
+        "short": "Latest TikTok: {{title}} - {{url}}"
+      },
+      "error": {
+        "latest-video": "Failed to fetch TikTok data for handle: {{handle}}"
       }
     }
   }

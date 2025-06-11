@@ -11,8 +11,8 @@
   // },
   "kv_namespaces": [
     {
-      "binding": "ESPOCABOT_SPARK_API_CACHE",
-      "id": "6f327705963d4569a47543dcb411094c"
+      "binding": "KV",
+      "id": "20ec373f049c4d428e70c199f5986a9a"
     }
   ]
   // ],
