@@ -1,12 +1,17 @@
 {
   "name": "@spark/api",
+  "types": "dist/server.d.ts",
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "scripts": {
     "dev": "wrangler dev src/server.ts --port 8787",
     "deploy": "wrangler deploy --minify src/server.ts",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
     "lint": "biome check --write .",
-    "check-types": "tsc"
+    "check-types": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
     "hono": "^4.7.11",
