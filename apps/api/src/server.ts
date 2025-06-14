@@ -32,7 +32,7 @@ app.use(logger(customLogger));
 // });
 app.use(
 	languageDetector({
-		order: ['path', 'cookie', 'querystring', 'header'],
+		order: ["path", "querystring", "header", "cookie"],
 		lookupFromPathIndex: 1,
 		supportedLanguages: ["en-US", "pt-BR"],
 		fallbackLanguage: "en-US",
