@@ -1,44 +1,71 @@
-import { Hono } from "hono";
-
-import type { HonoEnv } from "@/lib/definitions.ts";
-import { logger } from "@/lib/logger.ts";
+import { errorSchema } from "@/definitions/http-errors.ts";
+import {
+	getSteamPlaytimeInHoursParamsSchema,
+	getSteamPlaytimeInHoursQuerySchema,
+	getSteamPlaytimeInHoursResponseSchema,
+} from "@/definitions/steam.ts";
+import { createRouter } from "@/lib/create-router.ts";
+import { isErr } from "@/lib/result.ts";
 import { SteamProvider } from "@/providers/steam.ts";
 
-const steam = new Hono<HonoEnv>();
-// http://localhost:4343/api/pt-BR/steam/hours/76561198209279900/381210
-steam.get("/hours/:steam_id/:app_id", async (c) => {
-	const t = c.get("t");
-	const { "text-format": textFormat, "custom-text": customText } =
-		c.req.query();
-	const { steam_id: steamId, app_id: appId } = c.req.param();
+const steam = createRouter().openapi(
+	{
+		method: "get",
+		path: "/hours/{steam_id}/{app_id}",
+		summary: "Get Steam playtime in hours",
+		tags: ["Steam"],
+		request: {
+			params: getSteamPlaytimeInHoursParamsSchema,
+			query: getSteamPlaytimeInHoursQuerySchema,
+		},
+		responses: {
+			200: {
+				description: "Playtime in hours",
+				content: {
+					"text/plain": {
+						schema: getSteamPlaytimeInHoursResponseSchema,
+					},
+				},
+			},
+			400: {
+				description: "Error fetching playtime",
+				content: {
+					"application/json": {
+						schema: errorSchema,
+					},
+				},
+			},
+		},
+	},
+	async (c) => {
+		const t = c.get("t");
+		const { "text-format": textFormat } = c.req.valid("query");
+		const { steam_id: steamId, app_id: appId } = c.req.valid("param");
 
-	try {
 		const provider = new SteamProvider();
 
-		const { playtimeMinutes } = await provider.getPlaytime({
+		const playtimeResult = await provider.getPlaytime({
 			appId,
 			steamId,
 		});
 
+		if (isErr(playtimeResult)) {
+			return c.json(
+				{
+					success: false as const,
+					error: t("social.steam.error.playtime", { appId, steamId }),
+				},
+				400,
+			);
+		}
+
+		const { playtimeInMinutes, gameName } = playtimeResult.value;
+
 		return c.text(
-			provider.getPlaytimeText(
-				playtimeMinutes,
-				"Dead by Daylight",
-				// @ts-ignore
-				textFormat,
-				customText,
-			),
+			provider.getPlaytimeText(playtimeInMinutes, gameName, textFormat),
 			200,
 		);
-	} catch (error) {
-		logger("Error fetching Steam playtime");
-		return c.json(
-			{
-				error: t("social.steam.error.playtime", { appId, steamId }),
-			},
-			500,
-		);
-	}
-});
+	},
+);
 
 export { steam };

@@ -1,0 +1,68 @@
+import {
+	getCountdownToDateTimeQuerySchema,
+	getCountdownToDateTimeResponseSchema,
+} from "@/definitions/datetime.ts";
+import { errorSchema } from "@/definitions/http-errors.ts";
+import { createRouter } from "@/lib/create-router.ts";
+
+const datetime = createRouter().openapi(
+	{
+		method: "get",
+		path: "/date-time/countdown",
+		summary: "Get countdown to a specific date and time",
+		tags: ["DateTime"],
+		request: {
+			query: getCountdownToDateTimeQuerySchema,
+		},
+		responses: {
+			200: {
+				description: "Countdown to the specified date and time",
+				content: {
+					"text/plain": {
+						schema: getCountdownToDateTimeResponseSchema,
+					},
+				},
+			},
+			400: {
+				description: "Invalid date format or date in the past",
+				content: {
+					"application/json": {
+						schema: errorSchema,
+					},
+				},
+			},
+		},
+	},
+	async (c) => {
+		const t = c.get("t");
+		const { datetime, "text-format": textFormat } = c.req.valid("query");
+		const targetDate = new Date(datetime);
+		const now = new Date();
+
+		const timeDifference = targetDate.getTime() - now.getTime();
+		if (timeDifference < 0) {
+			// i know this is not the best way to handle this, but it works for now,
+			// because i need to show a default message when the date is in the past
+			return c.text(t("miscellaneous.date-time.error.already-passed"), 200);
+		}
+
+		const seconds = Math.floor(timeDifference / 1000);
+		const minutes = Math.floor(seconds / 60);
+		const hours = Math.floor(minutes / 60);
+		const days = Math.floor(hours / 24);
+
+		const key = `miscellaneous.date-time.countdown.${textFormat}` as const;
+
+		return c.text(
+			t(key, {
+				days: days.toString(),
+				hours: (hours % 24).toString(),
+				minutes: (minutes % 60).toString(),
+				seconds: (seconds % 60).toString(),
+			}),
+			200,
+		);
+	},
+);
+
+export { datetime };

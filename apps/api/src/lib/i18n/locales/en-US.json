@@ -1,4 +1,15 @@
 {
+  "miscellaneous": {
+    "date-time": {
+      "error": {
+        "already-passed": "The time has come and gone."
+      },
+      "countdown": {
+        "full": "{{days}} days, {{hours}} hours, {{minutes}} minutes and {{seconds}} seconds",
+        "short": "{{days}}d {{hours}}h {{minutes}}m {{seconds}}s"
+      }
+    }
+  },
   "social": {
     "steam": {
       "hours": {
@@ -6,9 +17,9 @@
         "compact": "{{totalHours}}h {{totalMinutes}}m",
         "detailed": "{{totalHours}} hours and {{totalMinutes}} minutes played",
         "compact-with-seconds": "{{totalHours}}h {{totalMinutes}}m {{totalSeconds}}s",
-        "extended": "{{totalDays}} days, {{totalHoursMinusDays}} hours and {{totalMinutesMinusHours}} minutes played in {{gameTitle}}",
+        "extended": "{{totalDays}} days, {{totalHoursMinusDays}} hours and {{totalMinutesMinusHours}} minutes played in {{gameName}}",
         "minimal": "{{totalHours}}h",
-        "full": "{{totalDays}} days, {{totalHoursMinusDays}} hours, {{totalMinutesMinusHours}} minutes and {{totalSecondsMinusMinutes}} seconds played in {{gameTitle}}",
+        "full": "{{totalDays}} days, {{totalHoursMinusDays}} hours, {{totalMinutesMinusHours}} minutes and {{totalSecondsMinusMinutes}} seconds played in {{gameName}}",
         "short-time": "{{totalHours}}:{{totalMinutes}}",
         "precise": "{{totalHours}}h {{totalMinutes}}m {{totalSeconds}}s",
         "casual": "{{totalHours}} hours and {{totalMinutes}} min"

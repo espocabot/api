@@ -8,6 +8,7 @@ export type HonoEnv = {
 		STEAM_WEB_API_KEY: string;
 		TIKTOK_CLIENT_KEY: string;
 		TIKTOK_CLIENT_SECRET_KEY: string;
+		YOUTUBE_API_KEY: string;
 		KV: KVNamespace;
 	};
 };

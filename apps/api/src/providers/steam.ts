@@ -1,54 +1,28 @@
-import { interpolate } from "@/helpers/formatters.ts";
+import {
+	type CachedPlaytimeData,
+	type PlaytimeTextFormat,
+	getPlaytimeResponseDataFromSteamSchema,
+} from "@/definitions/steam.ts";
 import { getTimeInfoFromMinutes } from "@/helpers/timers.ts";
 import { getEnvs } from "@/lib/env.ts";
 import { getKV, setKV } from "@/lib/kv.ts";
 import { logger } from "@/lib/logger.ts";
+import { type AyncResult, type Result, err, ok } from "@/lib/result.ts";
 import { getTranslator } from "@/lib/translator.ts";
-import { z } from "zod/v4-mini";
 
-const DEFAULT_TTL_TIME = 2 * 60 * 60; // 2 hours
-
-const playtimeSchema = z.object({
-	playtimeMinutes: z.number(),
-});
-
-type PlaytimeTextFormat =
-	| "standard"
-	| "compact"
-	| "detailed"
-	| "compact-with-seconds"
-	| "extended"
-	| "minimal"
-	| "full"
-	| "short-time"
-	| "precise"
-	| "casual"
-	| "custom";
-
-type PlaytimeData = z.infer<typeof playtimeSchema>;
-
-const responseSchema = z.object({
-	response: z.object({
-		games: z.array(
-			z.object({
-				appid: z.number(),
-				playtime_forever: z.number(),
-			}),
-		),
-	}),
-});
+const DEFAULT_TTL_TIME = 60 * 30; // 30 minutes
 
 export class SteamProvider {
 	#baseUrl = "https://api.steampowered.com";
 
 	async getPlaytime({ steamId, appId }: { steamId: string; appId: string }) {
 		const cacheKey = `social:steam:playtime:${steamId}:${appId}`;
-		const cached = await getKV<PlaytimeData>(cacheKey, "json");
+		const cached = await getKV<CachedPlaytimeData>(cacheKey, "json");
 		const { STEAM_WEB_API_KEY } = getEnvs();
 
 		if (cached) {
 			logger("Cache hit for:", cacheKey);
-			return cached;
+			return ok(cached);
 		}
 
 		const res = await fetch(
@@ -59,25 +33,28 @@ export class SteamProvider {
 			logger(
 				`Failed to fetch data from Steam API: ${res.status} ${res.statusText}`,
 			);
-			throw new Error("Failed to fetch data from Steam API");
+			return err(new Error("Failed to fetch data from Steam API"));
 		}
 
 		const json = await res.json();
-		const parsed = responseSchema.safeParse(json);
+		const parsed = getPlaytimeResponseDataFromSteamSchema.safeParse(json);
 
 		if (!parsed.success) {
 			logger("Failed to parse response from Steam API:", parsed.error.message);
-			throw new Error("Failed to parse response from Steam API");
+			return err(new Error("Failed to parse response from Steam API"));
 		}
 
 		const firstGame = parsed.data.response.games[0];
 		if (!firstGame) {
 			logger("No games found for the given Steam ID and App ID.");
-			throw new Error("No games found for the given Steam ID and App ID.");
+			return err(
+				new Error("No games found for the given Steam ID and App ID."),
+			);
 		}
 
-		const data: PlaytimeData = {
-			playtimeMinutes: firstGame.playtime_forever,
+		const data: CachedPlaytimeData = {
+			playtimeInMinutes: firstGame.playtime_forever,
+			gameName: firstGame.name,
 		};
 
 		logger("Fetched data from Steam API:", JSON.stringify(data));
@@ -86,30 +63,22 @@ export class SteamProvider {
 			expirationTtl: DEFAULT_TTL_TIME,
 		});
 
-		return data;
+		return ok(data);
 	}
 
 	getPlaytimeText(
 		playtimeMinutes: number,
-		gameTitle: string,
-		format: PlaytimeTextFormat = "standard",
-		customText = "{totalHours}h {totalMinutes}m",
+		gameName: string,
+		format: PlaytimeTextFormat,
 	) {
 		const timeInfoFromMinutes = getTimeInfoFromMinutes(playtimeMinutes);
 		const t = getTranslator();
 
-		if (format === "custom") {
-			logger("Custom format used:", customText);
-			return interpolate(customText, timeInfoFromMinutes);
-		}
-
 		const key = `social.steam.hours.${format}` as const;
 
 		logger(
-			`Using format key: ${key} with time info: ${JSON.stringify(
-				timeInfoFromMinutes,
-			)} and game title: ${gameTitle}`,
+			`Using format key: ${key} with time info: ${playtimeMinutes} and game title: ${gameName}`,
 		);
-		return t(key, { ...timeInfoFromMinutes, gameTitle });
+		return t(key, { ...timeInfoFromMinutes, gameName });
 	}
 }

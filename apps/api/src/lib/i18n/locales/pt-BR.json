@@ -1,5 +1,15 @@
 {
-  "playtime": "{{hours}} horas.",
+  "miscellaneous": {
+    "date-time": {
+      "error": {
+        "already-passed": "A hora já passou."
+      },
+      "countdown": {
+        "full": "{{days}} dias, {{hours}} horas, {{minutes}} minutos e {{seconds}} segundos",
+        "short": "{{days}}d {{hours}}h {{minutes}}m {{seconds}}s"
+      }
+    }
+  },
   "social": {
     "steam": {
       "hours": {
@@ -7,9 +17,9 @@
         "compact": "{{totalHours}}h {{totalMinutes}}m",
         "detailed": "{{totalHours}} horas e {{totalMinutes}} minutos jogados",
         "compact-with-seconds": "{{totalHours}}h {{totalMinutes}}m {{totalSeconds}}s",
-        "extended": "{{totalDays}} dias, {{totalHoursMinusDays}} horas e {{totalMinutesMinusHours}} minutos jogados em {{gameTitle}}",
+        "extended": "{{totalDays}} dias, {{totalHoursMinusDays}} horas e {{totalMinutesMinusHours}} minutos jogados em {{gameName}}",
         "minimal": "{{totalHours}}h",
-        "full": "{{totalDays}} dias, {{totalHoursMinusDays}} horas, {{totalMinutesMinusHours}} minutos e {{totalSecondsMinusMinutes}} segundos jogados em {{gameTitle}}",
+        "full": "{{totalDays}} dias, {{totalHoursMinusDays}} horas, {{totalMinutesMinusHours}} minutos e {{totalSecondsMinusMinutes}} segundos jogados em {{gameName}}",
         "short-time": "{{totalHours}}:{{totalMinutes}}",
         "precise": "{{totalHours}}h {{totalMinutes}}m {{totalSeconds}}s",
         "casual": "{{totalHours}} horas e {{totalMinutes}} minutos"

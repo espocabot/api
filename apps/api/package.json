@@ -14,9 +14,10 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
+    "@hono/zod-openapi": "^0.19.8",
     "hono": "^4.7.11",
     "i18next": "^25.2.1",
-    "zod": "^3.25.56"
+    "zod": "^3.25.64"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250607.0",

@@ -1,4 +1,3 @@
-import { Hono } from "hono";
 import { contextStorage } from "hono/context-storage";
 import { csrf } from "hono/csrf";
 import { languageDetector } from "hono/language";
@@ -9,14 +8,22 @@ import { logger as customLogger } from "@/lib/logger.ts";
 import { i18nMiddleware } from "@/middlewares/i18n.js";
 import { health } from "@/routes/config/health.ts";
 import { steam } from "@/routes/social/steam.ts";
+import { createRouter } from "./lib/create-router.ts";
+import { notFoundMiddleware } from "./middlewares/http.ts";
+import { datetime } from "./routes/miscellaneous/datetime.ts";
 // import { tiktok } from "@/routes/social/tiktok.ts";
 
-const app = new Hono();
+const app = createRouter();
 
 app.use(contextStorage());
 app.use(csrf());
 app.use(secureHeaders());
 app.use(logger(customLogger));
+app.doc31("/docs", { openapi: "3.1.0", info: { title: "foo", version: "1" } });
+app.getOpenAPI31Document({
+	openapi: "3.1.0",
+	info: { title: "foo", version: "1" },
+});
 // app.onError((err, c) => {
 // 	if (err instanceof HTTPException) {
 // 		return err.getResponse();
@@ -38,10 +45,12 @@ app.use(
 		fallbackLanguage: "en-US",
 	}),
 );
+app.notFound(notFoundMiddleware());
 app.use("*", i18nMiddleware());
 
 // app.route("/api/:lang/tiktok", tiktok);
 app.route("/api/:lang/steam", steam);
+app.route("/api/:lang/misc", datetime);
 app.route("/health", health);
 
 export default app;
