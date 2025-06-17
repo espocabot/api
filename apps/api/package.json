@@ -17,6 +17,8 @@
     "@hono/zod-openapi": "^0.19.8",
     "hono": "^4.7.11",
     "i18next": "^25.2.1",
+    "i18next-icu": "^2.3.0",
+    "intl-messageformat": "^10.7.16",
     "zod": "^3.25.64"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 import i18next from "i18next";
+import ICU from "i18next-icu";
 
 // Use Javascript Tags (BCP 47) - https://www.techonthenet.com/js/language_tags.php
 import enUS from "./locales/en-US.json" with { type: "json" };
@@ -9,16 +10,21 @@ export const defaultNS = "translation";
 export type SupportedLanguages = "en-US" | "pt-BR";
 
 export const resources = {
-	translation: enUS,
+	[defaultNS]: enUS,
 } as const;
 
-await i18next.init({
+await i18next.use(ICU).init({
 	fallbackLng: "en-US",
+	ns: [defaultNS],
 	defaultNS,
-	resources: {
-		"en-US": { translation: enUS },
-		"pt-BR": { translation: ptBR },
+	interpolation: {
+		escapeValue: false,
 	},
+	resources: {
+		"en-US": { [defaultNS]: enUS },
+		"pt-BR": { [defaultNS]: ptBR },
+	},
+	debug: false,
 });
 
 export default i18next;

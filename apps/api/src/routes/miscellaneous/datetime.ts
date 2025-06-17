@@ -4,6 +4,7 @@ import {
 } from "@/definitions/datetime.ts";
 import { errorSchema } from "@/definitions/http-errors.ts";
 import { createRouter } from "@/lib/create-router.ts";
+import { logger } from "@/lib/logger.ts";
 
 const datetime = createRouter().openapi(
 	{
@@ -53,12 +54,16 @@ const datetime = createRouter().openapi(
 
 		const key = `miscellaneous.date-time.countdown.${textFormat}` as const;
 
+		logger(
+			`Countdown to ${targetDate.toISOString()} - Days: ${days}, Hours: ${hours % 24}, Minutes: ${minutes % 60}, Seconds: ${seconds % 60}`,
+		);
+
 		return c.text(
 			t(key, {
-				days: days.toString(),
-				hours: (hours % 24).toString(),
-				minutes: (minutes % 60).toString(),
-				seconds: (seconds % 60).toString(),
+				days: days,
+				hours: hours % 24,
+				minutes: minutes % 60,
+				seconds: seconds % 60,
 			}),
 			200,
 		);
