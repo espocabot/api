@@ -8,14 +8,12 @@ import { logger as customLogger } from "@/lib/logger.ts";
 import { i18nMiddleware } from "@/middlewares/i18n.js";
 import { health } from "@/routes/config/health.ts";
 import { steam } from "@/routes/social/steam.ts";
-import type { OpenAPIObjectConfigure } from "@hono/zod-openapi";
 import { createRouter } from "./lib/create-router.ts";
-import type { HonoEnv } from "./lib/definitions.ts";
 import { notFoundMiddleware } from "./middlewares/http.ts";
 import { datetime } from "./routes/miscellaneous/datetime.ts";
 // import { tiktok } from "@/routes/social/tiktok.ts";
 
-const config: OpenAPIObjectConfigure<HonoEnv> = {
+const config = {
 	openapi: "3.1.0",
 	info: {
 		title: "API Documentation",
@@ -36,14 +34,8 @@ app.use(contextStorage());
 app.use(csrf());
 app.use(secureHeaders());
 app.use(logger(customLogger));
-app.doc31("/docs", {
-	openapi: "3.1.0",
-	info: { title: "foo", version: "1" },
-});
-app.getOpenAPI31Document({
-	openapi: "3.1.0",
-	info: { title: "foo", version: "1" },
-});
+app.doc31("/docs", config);
+app.getOpenAPI31Document(config);
 // app.onError((err, c) => {
 // 	if (err instanceof HTTPException) {
 // 		return err.getResponse();
