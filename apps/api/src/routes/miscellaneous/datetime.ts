@@ -2,7 +2,7 @@ import {
 	getCountdownToDateTimeQuerySchema,
 	getCountdownToDateTimeResponseSchema,
 } from "@/definitions/datetime.ts";
-import { errorSchema } from "@/definitions/http-errors.ts";
+import { OK } from "@/definitions/http-status-code.ts";
 import { createRouter } from "@/lib/create-router.ts";
 import { logger } from "@/lib/logger.ts";
 
@@ -16,19 +16,11 @@ const datetime = createRouter().openapi(
 			query: getCountdownToDateTimeQuerySchema,
 		},
 		responses: {
-			200: {
+			[OK]: {
 				description: "Countdown to the specified date and time",
 				content: {
 					"text/plain": {
 						schema: getCountdownToDateTimeResponseSchema,
-					},
-				},
-			},
-			400: {
-				description: "Invalid date format or date in the past",
-				content: {
-					"application/json": {
-						schema: errorSchema,
 					},
 				},
 			},
@@ -44,7 +36,7 @@ const datetime = createRouter().openapi(
 		if (timeDifference < 0) {
 			// i know this is not the best way to handle this, but it works for now,
 			// because i need to show a default message when the date is in the past
-			return c.text(t("miscellaneous.date-time.error.already-passed"), 200);
+			return c.text(t("miscellaneous.date-time.error.already-passed"), OK);
 		}
 
 		const seconds = Math.floor(timeDifference / 1000);
@@ -65,7 +57,7 @@ const datetime = createRouter().openapi(
 				minutes: minutes % 60,
 				seconds: seconds % 60,
 			}),
-			200,
+			OK,
 		);
 	},
 );

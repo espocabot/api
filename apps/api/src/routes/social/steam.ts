@@ -1,4 +1,5 @@
 import { errorSchema } from "@/definitions/http-errors.ts";
+import { NOT_FOUND, OK } from "@/definitions/http-status-code.ts";
 import {
 	getSteamPlaytimeInHoursParamsSchema,
 	getSteamPlaytimeInHoursQuerySchema,
@@ -19,7 +20,7 @@ const steam = createRouter().openapi(
 			query: getSteamPlaytimeInHoursQuerySchema,
 		},
 		responses: {
-			200: {
+			[OK]: {
 				description: "Playtime in hours",
 				content: {
 					"text/plain": {
@@ -27,7 +28,7 @@ const steam = createRouter().openapi(
 					},
 				},
 			},
-			400: {
+			[NOT_FOUND]: {
 				description: "Error fetching playtime",
 				content: {
 					"application/json": {
@@ -55,7 +56,7 @@ const steam = createRouter().openapi(
 					success: false as const,
 					error: t("social.steam.error.playtime", { appId, steamId }),
 				},
-				400,
+				NOT_FOUND,
 			);
 		}
 
@@ -63,7 +64,7 @@ const steam = createRouter().openapi(
 
 		return c.text(
 			provider.getPlaytimeText(playtimeInMinutes, gameName, textFormat),
-			200,
+			OK,
 		);
 	},
 );

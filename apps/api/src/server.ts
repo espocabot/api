@@ -13,7 +13,7 @@ import { notFoundMiddleware } from "./middlewares/http.ts";
 import { datetime } from "./routes/miscellaneous/datetime.ts";
 // import { tiktok } from "@/routes/social/tiktok.ts";
 
-const config = {
+const docConfig = {
 	openapi: "3.1.0",
 	info: {
 		title: "API Documentation",
@@ -34,8 +34,8 @@ app.use(contextStorage());
 app.use(csrf());
 app.use(secureHeaders());
 app.use(logger(customLogger));
-app.doc31("/docs", config);
-app.getOpenAPI31Document(config);
+app.doc31("/docs", docConfig);
+app.getOpenAPI31Document(docConfig);
 // app.onError((err, c) => {
 // 	if (err instanceof HTTPException) {
 // 		return err.getResponse();

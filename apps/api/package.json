@@ -1,5 +1,5 @@
 {
-  "name": "@spark/api",
+  "name": "@espocabot/api",
   "types": "dist/server.d.ts",
   "files": [
     "dist"
@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "@hono/zod-openapi": "^0.19.8",
-    "hono": "^4.7.11",
+    "hono": "^4.8.0",
     "i18next": "^25.2.1",
     "i18next-icu": "^2.3.0",
     "intl-messageformat": "^10.7.16",
-    "zod": "^3.25.64"
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250607.0",
