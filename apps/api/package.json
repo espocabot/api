@@ -1,31 +1,32 @@
 {
-  "name": "@espocabot/api",
-  "types": "dist/server.d.ts",
-  "files": [
-    "dist"
-  ],
-  "type": "module",
-  "scripts": {
-    "dev": "wrangler dev src/server.ts --port 8787",
-    "deploy": "wrangler deploy --minify src/server.ts",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
-    "lint": "biome check --write .",
-    "check-types": "tsc --noEmit",
-    "build": "tsc -p tsconfig.build.json"
-  },
-  "dependencies": {
-    "@hono/zod-openapi": "^0.19.8",
-    "hono": "^4.8.0",
-    "i18next": "^25.2.1",
-    "i18next-icu": "^2.3.0",
-    "intl-messageformat": "^10.7.16",
-    "zod": "^3.25.67"
-  },
-  "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250607.0",
-    "@spark/tsconfig": "workspace:*",
-    "@types/bun": "^1.2.15",
-    "typescript": "^5.8.3",
-    "wrangler": "^4.4.0"
-  }
+	"name": "@espocabot/api",
+	"types": "dist/server.d.ts",
+	"files": [
+		"dist"
+	],
+	"type": "module",
+	"scripts": {
+		"dev": "wrangler dev src/server.ts --port 8787",
+		"deploy": "wrangler deploy --minify src/server.ts",
+		"cf-typegen": "wrangler types --env-interface CloudflareBindings",
+		"lint": "biome lint .",
+		"lint:fix": "biome check --write .",
+		"typecheck": "tsc --noEmit",
+		"build": "tsc -p tsconfig.build.json"
+	},
+	"dependencies": {
+		"@hono/zod-openapi": "^0.19.8",
+		"hono": "^4.8.0",
+		"i18next": "^25.2.1",
+		"i18next-icu": "^2.3.0",
+		"intl-messageformat": "^10.7.16",
+		"zod": "^3.25.67"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20250607.0",
+		"@spark/tsconfig": "workspace:*",
+		"@types/bun": "^1.2.15",
+		"typescript": "^5.8.3",
+		"wrangler": "^4.4.0"
+	}
 }

@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 
-import type { HonoEnv } from "@/lib/definitions.ts";
+import type { HonoEnv } from "@/definitions/config.ts";
 import { TikTokProvider } from "@/providers/tiktok.ts";
 
 const tiktok = new Hono<HonoEnv>();

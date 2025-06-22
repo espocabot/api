@@ -23,9 +23,14 @@
 				"^lint"
 			]
 		},
-		"check-types": {
+		"lint:fix": {
 			"dependsOn": [
-				"^check-types"
+				"^lint:fix"
+			]
+		},
+		"typecheck": {
+			"dependsOn": [
+				"^typecheck"
 			]
 		},
 		"dev": {

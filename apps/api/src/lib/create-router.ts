@@ -1,6 +1,6 @@
 import type { HonoEnv } from "@/definitions/config.ts";
+import { UNPROCESSABLE_ENTITY } from "@/definitions/http-status-code.ts";
 import { OpenAPIHono } from "@hono/zod-openapi";
-import { UNPROCESSABLE_ENTITY } from "../definitions/http-status-code.ts";
 
 export function createRouter() {
 	return new OpenAPIHono<HonoEnv>({

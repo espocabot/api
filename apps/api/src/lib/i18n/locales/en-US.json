@@ -1,42 +1,42 @@
 {
-  "miscellaneous": {
-    "date-time": {
-      "error": {
-        "already-passed": "0 seconds"
-      },
-      "countdown": {
-        "full": "{days, plural, =0 {} one {# day} other {# days}}{days, plural, =0 {} other {, }}{hours, plural, =0 {} one {# hour} other {# hours}}{hours, plural, =0 {} other {, }}{minutes, plural, =0 {} one {# minute} other {# minutes}}{seconds, plural, =0 {} one { and # second} other { and # seconds}}",
-        "short": "{days}d {hours}h {minutes}m {seconds}s"
-      }
-    }
-  },
-  "social": {
-    "steam": {
-      "hours": {
-        "standard": "{totalHours, plural, =0 {# hours} one {# hour} other {# hours}}.",
-        "compact": "{totalHours}h {totalMinutes}m",
-        "detailed": "{totalHours, plural, =0 {# hours} one {# hour} other {# hours}} and {totalMinutes, plural, =0 {# minutes} one {# minute} other {# minutes}} played",
-        "compact-with-seconds": "{totalHours}h {totalMinutes}m {totalSeconds}s",
-        "extended": "{totalDays, plural, =0 {# days} one {# day} other {# days}}, {totalHoursMinusDays, plural, =0 {# hours} one {# hour} other {# hours}} and {totalMinutesMinusHours, plural, =0 {# minutes} one {# minute} other {# minutes}} played in {gameName}",
-        "minimal": "{totalHours}h",
-        "full": "{totalDays, plural, =0 {# days} one {# day} other {# days}}, {totalHoursMinusDays, plural, =0 {# hours} one {# hour} other {# hours}}, {totalMinutesMinusHours, plural, =0 {# minutes} one {# minute} other {# minutes}} and {totalSecondsMinusMinutes, plural, =0 {# seconds} one {# second} other {# seconds}} played in {gameName}",
-        "short-time": "{totalHours}h:{totalMinutes}m",
-        "precise": "{totalHours}h {totalMinutes}m {totalSeconds}s",
-        "casual": "{totalHoursMinusDays, plural, =0 {# hours} one {# hour} other {# hours}} and {totalMinutesMinusHours, plural, =0 {# minutes} one {# minute} other {# minutes}}"
-      },
-      "error": {
-        "playtime": "Failed to fetch playtime for steamId: {steamId} and appId: {appId}"
-      }
-    },
-    "tiktok": {
-      "latest-video-text": {
-        "default": "Check out my latest video on TikTok! URL: {url}",
-        "with-emoji": "🎥 Latest TikTok: {title} | ❤️ {likes} | 👀 {views} | 💬 {comments} | 🔗 {shares} | Watch: {url}",
-        "short": "Latest TikTok: {title} - {url}"
-      },
-      "error": {
-        "latest-video": "Failed to fetch TikTok data for handle: {handle}"
-      }
-    }
-  }
+	"miscellaneous": {
+		"date-time": {
+			"error": {
+				"already-passed": "0 seconds"
+			},
+			"countdown": {
+				"full": "{days, plural, =0 {} one {# day} other {# days}}{days, plural, =0 {} other {, }}{hours, plural, =0 {} one {# hour} other {# hours}}{hours, plural, =0 {} other {, }}{minutes, plural, =0 {} one {# minute} other {# minutes}}{seconds, plural, =0 {} one { and # second} other { and # seconds}}",
+				"short": "{days}d {hours}h {minutes}m {seconds}s"
+			}
+		}
+	},
+	"social": {
+		"steam": {
+			"hours": {
+				"standard": "{totalHours, plural, =0 {# hours} one {# hour} other {# hours}}.",
+				"compact": "{totalHours}h {totalMinutes}m",
+				"detailed": "{totalHours, plural, =0 {# hours} one {# hour} other {# hours}} and {totalMinutes, plural, =0 {# minutes} one {# minute} other {# minutes}} played",
+				"compact-with-seconds": "{totalHours}h {totalMinutes}m {totalSeconds}s",
+				"extended": "{totalDays, plural, =0 {# days} one {# day} other {# days}}, {totalHoursMinusDays, plural, =0 {# hours} one {# hour} other {# hours}} and {totalMinutesMinusHours, plural, =0 {# minutes} one {# minute} other {# minutes}} played in {gameName}",
+				"minimal": "{totalHours}h",
+				"full": "{totalDays, plural, =0 {# days} one {# day} other {# days}}, {totalHoursMinusDays, plural, =0 {# hours} one {# hour} other {# hours}}, {totalMinutesMinusHours, plural, =0 {# minutes} one {# minute} other {# minutes}} and {totalSecondsMinusMinutes, plural, =0 {# seconds} one {# second} other {# seconds}} played in {gameName}",
+				"short-time": "{totalHours}h:{totalMinutes}m",
+				"precise": "{totalHours}h {totalMinutes}m {totalSeconds}s",
+				"casual": "{totalHours, plural, =0 {# hours} one {# hour} other {# hours}} and {totalMinutes, plural, =0 {# minutes} one {# minute} other {# minutes}}"
+			},
+			"error": {
+				"playtime": "Failed to fetch playtime for steamId: {steamId} and appId: {appId}"
+			}
+		},
+		"tiktok": {
+			"latest-video-text": {
+				"default": "Check out my latest video on TikTok! URL: {url}",
+				"with-emoji": "🎥 Latest TikTok: {title} | ❤️ {likes} | 👀 {views} | 💬 {comments} | 🔗 {shares} | Watch: {url}",
+				"short": "Latest TikTok: {title} - {url}"
+			},
+			"error": {
+				"latest-video": "Failed to fetch TikTok data for handle: {handle}"
+			}
+		}
+	}
 }

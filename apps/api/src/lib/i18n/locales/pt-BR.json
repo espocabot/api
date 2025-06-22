@@ -1,42 +1,42 @@
 {
-  "miscellaneous": {
-    "date-time": {
-      "error": {
-        "already-passed": "0 segundos"
-      },
-      "countdown": {
-        "full": "{days, plural, =0 {} one {# dia} other {# dias}}{days, plural, =0 {} other {, }}{hours, plural, =0 {} one {# hora} other {# horas}}{hours, plural, =0 {} other {, }}{minutes, plural, =0 {} one {# minuto} other {# minutos}}{seconds, plural, =0 {} one { e # segundo} other { e # segundos}}",
-        "short": "{days}d {hours}h {minutes}m {seconds}s"
-      }
-    }
-  },
-  "social": {
-    "steam": {
-      "hours": {
-        "standard": "{totalHours, plural, =0 {# horas} one {# hora} other {# horas}}.",
-        "compact": "{totalHours}h {totalMinutes}m",
-        "detailed": "{totalHours, plural, =0 {# horas} one {# hora} other {# horas}} e {totalMinutes, plural, =0 {# minutos} one {# minuto} other {# minutos}} jogados",
-        "compact-with-seconds": "{totalHours}h {totalMinutes}m {totalSeconds}s",
-        "extended": "{totalDays, plural, =0 {# dias} one {# dia} other {# dias}}, {totalHoursMinusDays, plural, =0 {# horas} one {# hora} other {# horas}} e {totalMinutesMinusHours, plural, =0 {# minutos} one {# minuto} other {# minutos}} jogados em {gameName}",
-        "minimal": "{totalHours}h",
-        "full": "{totalDays, plural, =0 {# dias} one {# dia} other {# dias}}, {totalHoursMinusDays, plural, =0 {# horas} one {# hora} other {# horas}}, {totalMinutesMinusHours, plural, =0 {# minutos} one {# minuto} other {# minutos}} e {totalSecondsMinusMinutes, plural, =0 {# segundos} one {# segundo} other {# segundos}} jogados em {gameName}",
-        "short-time": "{totalHours}h:{totalMinutes}m",
-        "precise": "{totalHours}h {totalMinutes}m {totalSeconds}s",
-        "casual": "{totalHoursMinusDays, plural, =0 {# horas} one {# hora} other {# horas}} e {totalMinutesMinusHours, plural, =0 {# minutos} one {# minuto} other {# minutos}}"
-      },
-      "error": {
-        "playtime": "Falha ao buscar tempo de jogo para steamId: {steamId} e appId: {appId}"
-      }
-    },
-    "tiktok": {
-      "latest-video-text": {
-        "default": "Confira meu último vídeo no TikTok! URL: {url}",
-        "with-emoji": "🎥 Último TikTok: {title} | ❤️ {likes} | 👀 {views} | 💬 {comments} | 🔗 {shares} | Assista: {url}",
-        "short": "Último TikTok: {title} - {url}"
-      },
-      "error": {
-        "latest-video": "Falha ao buscar dados do TikTok para o handle: {handle}"
-      }
-    }
-  }
+	"miscellaneous": {
+		"date-time": {
+			"error": {
+				"already-passed": "0 segundos"
+			},
+			"countdown": {
+				"full": "{days, plural, =0 {} one {# dia} other {# dias}}{days, plural, =0 {} other {, }}{hours, plural, =0 {} one {# hora} other {# horas}}{hours, plural, =0 {} other {, }}{minutes, plural, =0 {} one {# minuto} other {# minutos}}{seconds, plural, =0 {} one { e # segundo} other { e # segundos}}",
+				"short": "{days}d {hours}h {minutes}m {seconds}s"
+			}
+		}
+	},
+	"social": {
+		"steam": {
+			"hours": {
+				"standard": "{totalHours, plural, =0 {# horas} one {# hora} other {# horas}}.",
+				"compact": "{totalHours}h {totalMinutes}m",
+				"detailed": "{totalHours, plural, =0 {# horas} one {# hora} other {# horas}} e {totalMinutes, plural, =0 {# minutos} one {# minuto} other {# minutos}} jogados",
+				"compact-with-seconds": "{totalHours}h {totalMinutes}m {totalSeconds}s",
+				"extended": "{totalDays, plural, =0 {# dias} one {# dia} other {# dias}}, {totalHoursMinusDays, plural, =0 {# horas} one {# hora} other {# horas}} e {totalMinutesMinusHours, plural, =0 {# minutos} one {# minuto} other {# minutos}} jogados em {gameName}",
+				"minimal": "{totalHours}h",
+				"full": "{totalDays, plural, =0 {# dias} one {# dia} other {# dias}}, {totalHoursMinusDays, plural, =0 {# horas} one {# hora} other {# horas}}, {totalMinutesMinusHours, plural, =0 {# minutos} one {# minuto} other {# minutos}} e {totalSecondsMinusMinutes, plural, =0 {# segundos} one {# segundo} other {# segundos}} jogados em {gameName}",
+				"short-time": "{totalHours}h:{totalMinutes}m",
+				"precise": "{totalHours}h {totalMinutes}m {totalSeconds}s",
+				"casual": "{totalHours, plural, =0 {# horas} one {# hora} other {# horas}} e {totalMinutes, plural, =0 {# minutos} one {# minuto} other {# minutos}}"
+			},
+			"error": {
+				"playtime": "Falha ao buscar tempo de jogo para steamId: {steamId} e appId: {appId}"
+			}
+		},
+		"tiktok": {
+			"latest-video-text": {
+				"default": "Confira meu último vídeo no TikTok! URL: {url}",
+				"with-emoji": "🎥 Último TikTok: {title} | ❤️ {likes} | 👀 {views} | 💬 {comments} | 🔗 {shares} | Assista: {url}",
+				"short": "Último TikTok: {title} - {url}"
+			},
+			"error": {
+				"latest-video": "Falha ao buscar dados do TikTok para o handle: {handle}"
+			}
+		}
+	}
 }

@@ -1,22 +1,12 @@
 {
-  "extends": "@spark/tsconfig/base.json",
-  "compilerOptions": {
-    "types": [
-      "@cloudflare/workers-types",
-      "bun-types"
-    ],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+	"extends": "@spark/tsconfig/base.json",
+	"compilerOptions": {
+		"types": ["@cloudflare/workers-types", "bun-types"],
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist"]
 }
