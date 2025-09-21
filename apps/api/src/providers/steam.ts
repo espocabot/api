@@ -10,7 +10,7 @@ import { logger } from "@/lib/logger.ts";
 import { type AyncResult, type Result, err, ok } from "@/lib/result.ts";
 import { getTranslator } from "@/lib/translator.ts";
 
-const DEFAULT_TTL_TIME = 60 * 30; // 30 minutes
+const DEFAULT_TTL_TIME = 60 * 15; // 15 minutes
 
 export class SteamProvider {
 	#baseUrl = "https://api.steampowered.com";
