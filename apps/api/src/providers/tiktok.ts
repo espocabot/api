@@ -1,8 +1,8 @@
+import { z } from 'zod';
 import { interpolate, mediaNumber } from '@/helpers/formatters.ts';
 import { getEnvs } from '@/lib/env.ts';
 import { logger } from '@/lib/logger.ts';
 import { getTranslator } from '@/lib/translator.ts';
-import { z } from 'zod/v4-mini';
 
 type LastestVideoTextFormat = 'default' | 'short' | 'with-emoji' | 'custom';
 

@@ -1,12 +1,12 @@
-import { logger as customLogger } from '@/lib/logger.ts';
-import { i18nMiddleware } from '@/middlewares/i18n.js';
-import { health } from '@/routes/config/health.ts';
-import { steam } from '@/routes/social/steam.ts';
 import { contextStorage } from 'hono/context-storage';
 import { csrf } from 'hono/csrf';
 import { languageDetector } from 'hono/language';
 import { logger } from 'hono/logger';
 import { secureHeaders } from 'hono/secure-headers';
+import { logger as customLogger } from '@/lib/logger.ts';
+import { i18nMiddleware } from '@/middlewares/i18n.js';
+import { health } from '@/routes/config/health.ts';
+import { steam } from '@/routes/social/steam.ts';
 import { createRouter } from './lib/create-router.ts';
 import { notFoundMiddleware } from './middlewares/http.ts';
 import { datetime } from './routes/miscellaneous/datetime.ts';

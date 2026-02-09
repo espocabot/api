@@ -1,5 +1,5 @@
-import type { HonoEnv } from '@/definitions/config.ts';
 import { getContext } from 'hono/context-storage';
+import type { HonoEnv } from '@/definitions/config.ts';
 
 export function setKV(...params: Parameters<KVNamespace['put']>) {
 	return getContext<HonoEnv>().env.KV.put(...params);

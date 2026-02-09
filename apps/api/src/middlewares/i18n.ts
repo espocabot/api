@@ -1,5 +1,5 @@
-import i18n from '@/lib/i18n/index.ts';
 import type { Context } from 'hono';
+import i18n from '@/lib/i18n/index.ts';
 
 export function i18nMiddleware() {
 	return async (c: Context, next: () => Promise<void>) => {

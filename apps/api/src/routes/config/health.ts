@@ -1,6 +1,6 @@
+import { z } from 'zod';
 import { OK } from '@/definitions/http-status-code.ts';
 import { createRouter } from '@/lib/create-router.ts';
-import { z } from 'zod';
 
 const getHealthCheckResponseSchema = z.object({
 	status: z.string(),
