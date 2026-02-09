@@ -1,5 +1,5 @@
 {
-	"name": "@espocabot/api",
+	"name": "@cmd/api",
 	"types": "dist/server.d.ts",
 	"files": [
 		"dist"
@@ -24,7 +24,7 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250607.0",
-		"@spark/tsconfig": "workspace:*",
+		"@cmd/tsconfig": "workspace:*",
 		"@types/bun": "^1.2.15",
 		"typescript": "^5.8.3",
 		"wrangler": "^4.4.0"

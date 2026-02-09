@@ -25,6 +25,10 @@ const docConfig = {
 			url: "https://api.espoca.bot",
 			description: "Production server",
 		},
+		{
+			url: "https://cmd.espoca.bot",
+			description: "Production server",
+		},
 	],
 };
 

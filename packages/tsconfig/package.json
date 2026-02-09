@@ -1,5 +1,5 @@
 {
-	"name": "@spark/tsconfig",
+	"name": "@cmd/tsconfig",
 	"version": "0.0.0",
 	"private": true
 }

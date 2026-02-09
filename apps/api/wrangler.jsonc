@@ -1,15 +1,18 @@
 {
 	"$schema": "../../node_modules/wrangler/config-schema.json",
-	"name": "espocabot-api",
+	"name": "cmd-api",
 	"main": "src/server.ts",
 	"compatibility_date": "2024-04-01",
-	"compatibility_flags": ["nodejs_compat"],
-	// "vars": {
-	//   "MY_VAR": "my-variable"
-	// },
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
 	"routes": [
 		{
 			"pattern": "api.espoca.bot/*",
+			"zone_name": "espoca.bot"
+		},
+		{
+			"pattern": "cmd.espoca.bot/*",
 			"zone_name": "espoca.bot"
 		}
 	],
@@ -23,21 +26,4 @@
 		"enabled": true,
 		"head_sampling_rate": 1
 	}
-	// ],
-	// "r2_buckets": [
-	//   {
-	//     "binding": "MY_BUCKET",
-	//     "bucket_name": "my-bucket"
-	//   }
-	// ],
-	// "d1_databases": [
-	//   {
-	//     "binding": "MY_DB",
-	//     "database_name": "my-database",
-	//     "database_id": ""
-	//   }
-	// ],
-	// "ai": {
-	//   "binding": "AI"
-	// },
 }
