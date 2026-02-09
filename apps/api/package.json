@@ -12,7 +12,8 @@
 		"lint": "biome lint .",
 		"lint:fix": "biome check --write .",
 		"typecheck": "tsc --noEmit",
-		"build": "tsc -p tsconfig.build.json"
+		"build": "tsc -p tsconfig.build.json",
+		"test": "bun test"
 	},
 	"dependencies": {
 		"@hono/zod-openapi": "^0.19.8",
