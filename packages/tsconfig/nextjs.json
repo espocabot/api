@@ -8,15 +8,17 @@
 				"name": "next"
 			}
 		],
-		"module": "ESNext",
-		"moduleResolution": "Bundler",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"incremental": true,
+		"allowImportingTsExtensions": false,
 		"allowJs": true,
-		"jsx": "preserve",
+		"jsx": "react-jsx",
 		"noEmit": true,
 		"lib": [
-			"es2022",
-			"DOM",
-			"DOM.Iterable"
+			"esnext",
+			"dom",
+			"dom.iterable"
 		]
 	}
 }
