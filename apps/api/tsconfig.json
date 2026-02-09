@@ -1,22 +1,12 @@
 {
 	"extends": "@cmd/tsconfig/base.json",
 	"compilerOptions": {
-		"types": [
-			"@cloudflare/workers-types",
-			"bun-types"
-		],
+		"types": ["@cloudflare/workers-types", "@types/bun"],
 		"baseUrl": ".",
 		"paths": {
-			"@/*": [
-				"./src/*"
-			]
+			"@/*": ["./src/*"]
 		}
 	},
-	"include": [
-		"src/**/*"
-	],
-	"exclude": [
-		"node_modules",
-		"dist"
-	]
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist"]
 }

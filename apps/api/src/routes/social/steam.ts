@@ -1,37 +1,37 @@
-import { errorSchema } from "@/definitions/http-errors.ts";
-import { NOT_FOUND, OK } from "@/definitions/http-status-code.ts";
+import { errorSchema } from '@/definitions/http-errors.ts';
+import { NOT_FOUND, OK } from '@/definitions/http-status-code.ts';
 import {
 	getSteamPlaytimeInHoursParamsSchema,
 	getSteamPlaytimeInHoursQuerySchema,
 	getSteamPlaytimeInHoursResponseSchema,
-} from "@/definitions/steam.ts";
-import { createRouter } from "@/lib/create-router.ts";
-import { isErr } from "@/lib/result.ts";
-import { SteamProvider } from "@/providers/steam.ts";
+} from '@/definitions/steam.ts';
+import { createRouter } from '@/lib/create-router.ts';
+import { isErr } from '@/lib/result.ts';
+import { SteamProvider } from '@/providers/steam.ts';
 
 const steam = createRouter().openapi(
 	{
-		method: "get",
-		path: "/hours/{steam_id}/{app_id}",
-		summary: "Get Steam playtime in hours",
-		tags: ["Steam"],
+		method: 'get',
+		path: '/hours/{steam_id}/{app_id}',
+		summary: 'Get Steam playtime in hours',
+		tags: ['Steam'],
 		request: {
 			params: getSteamPlaytimeInHoursParamsSchema,
 			query: getSteamPlaytimeInHoursQuerySchema,
 		},
 		responses: {
 			[OK]: {
-				description: "Playtime in hours",
+				description: 'Playtime in hours',
 				content: {
-					"text/plain": {
+					'text/plain': {
 						schema: getSteamPlaytimeInHoursResponseSchema,
 					},
 				},
 			},
 			[NOT_FOUND]: {
-				description: "Error fetching playtime",
+				description: 'Error fetching playtime',
 				content: {
-					"application/json": {
+					'application/json': {
 						schema: errorSchema,
 					},
 				},
@@ -39,9 +39,9 @@ const steam = createRouter().openapi(
 		},
 	},
 	async (c) => {
-		const t = c.get("t");
-		const { "text-format": textFormat } = c.req.valid("query");
-		const { steam_id: steamId, app_id: appId } = c.req.valid("param");
+		const t = c.get('t');
+		const { 'text-format': textFormat } = c.req.valid('query');
+		const { steam_id: steamId, app_id: appId } = c.req.valid('param');
 
 		const provider = new SteamProvider();
 
@@ -54,7 +54,7 @@ const steam = createRouter().openapi(
 			return c.json(
 				{
 					success: false as const,
-					error: t("social.steam.error.playtime", { appId, steamId }),
+					error: t('social.steam.error.playtime', { appId, steamId }),
 				},
 				NOT_FOUND,
 			);

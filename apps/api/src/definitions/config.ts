@@ -1,4 +1,4 @@
-import type i18n from "@/lib/i18n/index.ts";
+import type i18n from '@/lib/i18n/index.ts';
 
 export type HonoEnv = {
 	Variables: {

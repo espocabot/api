@@ -1,27 +1,27 @@
 import {
 	type CachedPlaytimeData,
-	type PlaytimeTextFormat,
 	getPlaytimeResponseDataFromSteamSchema,
-} from "@/definitions/steam.ts";
-import { getTimeInfoFromMinutes } from "@/helpers/timers.ts";
-import { getEnvs } from "@/lib/env.ts";
-import { getKV, setKV } from "@/lib/kv.ts";
-import { logger } from "@/lib/logger.ts";
-import { type AyncResult, type Result, err, ok } from "@/lib/result.ts";
-import { getTranslator } from "@/lib/translator.ts";
+	type PlaytimeTextFormat,
+} from '@/definitions/steam.ts';
+import { getTimeInfoFromMinutes } from '@/helpers/timers.ts';
+import { getEnvs } from '@/lib/env.ts';
+import { getKV, setKV } from '@/lib/kv.ts';
+import { logger } from '@/lib/logger.ts';
+import { err, ok } from '@/lib/result.ts';
+import { getTranslator } from '@/lib/translator.ts';
 
 const DEFAULT_TTL_TIME = 60 * 15; // 15 minutes
 
 export class SteamProvider {
-	#baseUrl = "https://api.steampowered.com";
+	#baseUrl = 'https://api.steampowered.com';
 
 	async getPlaytime({ steamId, appId }: { steamId: string; appId: string }) {
 		const cacheKey = `social:steam:playtime:${steamId}:${appId}`;
-		const cached = await getKV<CachedPlaytimeData>(cacheKey, "json");
+		const cached = await getKV<CachedPlaytimeData>(cacheKey, 'json');
 		const { STEAM_WEB_API_KEY } = getEnvs();
 
 		if (cached) {
-			logger("Cache hit for:", cacheKey);
+			logger('Cache hit for:', cacheKey);
 			return ok(cached);
 		}
 
@@ -33,22 +33,22 @@ export class SteamProvider {
 			logger(
 				`Failed to fetch data from Steam API: ${res.status} ${res.statusText}`,
 			);
-			return err(new Error("Failed to fetch data from Steam API"));
+			return err(new Error('Failed to fetch data from Steam API'));
 		}
 
 		const json = await res.json();
 		const parsed = getPlaytimeResponseDataFromSteamSchema.safeParse(json);
 
 		if (!parsed.success) {
-			logger("Failed to parse response from Steam API:", parsed.error.message);
-			return err(new Error("Failed to parse response from Steam API"));
+			logger('Failed to parse response from Steam API:', parsed.error.message);
+			return err(new Error('Failed to parse response from Steam API'));
 		}
 
 		const firstGame = parsed.data.response.games[0];
 		if (!firstGame) {
-			logger("No games found for the given Steam ID and App ID.");
+			logger('No games found for the given Steam ID and App ID.');
 			return err(
-				new Error("No games found for the given Steam ID and App ID."),
+				new Error('No games found for the given Steam ID and App ID.'),
 			);
 		}
 
@@ -57,7 +57,7 @@ export class SteamProvider {
 			gameName: firstGame.name,
 		};
 
-		logger("Fetched data from Steam API:", JSON.stringify(data));
+		logger('Fetched data from Steam API:', JSON.stringify(data));
 
 		await setKV(cacheKey, JSON.stringify(data), {
 			expirationTtl: DEFAULT_TTL_TIME,

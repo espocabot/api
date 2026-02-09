@@ -1,4 +1,4 @@
-import type { SupportedLanguages } from "@/lib/i18n/index.ts";
+import type { SupportedLanguages } from '@/lib/i18n/index.ts';
 
 export function interpolate(
 	text: string,
@@ -11,10 +11,10 @@ export function interpolate(
 
 export function mediaNumber(
 	value: number,
-	locale: SupportedLanguages = "en-US",
+	locale: SupportedLanguages = 'en-US',
 ) {
 	return new Intl.NumberFormat(locale, {
-		notation: "compact",
-		compactDisplay: "short",
+		notation: 'compact',
+		compactDisplay: 'short',
 	}).format(value);
 }

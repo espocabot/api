@@ -1,6 +1,6 @@
-import { getEnvs } from "@/lib/env.ts";
-import { logger } from "@/lib/logger.ts";
-import { z } from "zod";
+import { getEnvs } from '@/lib/env.ts';
+import { logger } from '@/lib/logger.ts';
+import { z } from 'zod';
 
 const channelDataResponseSchema = z.object({
 	items: z.array(
@@ -63,7 +63,7 @@ const playlistItemSchema = z.object({
 });
 
 export class YoutubeProvider {
-	#baseUrl = "https://www.googleapis.com/youtube/v3";
+	#baseUrl = 'https://www.googleapis.com/youtube/v3';
 
 	async getChannelDetails({ channelId }: { channelId: string }) {
 		const { YOUTUBE_API_KEY } = getEnvs();
@@ -145,9 +145,9 @@ export class YoutubeProvider {
 				firstItem.contentDetails.relatedPlaylists.uploads;
 
 			const getPlaylistDataParams = new URLSearchParams({
-				part: "snippet",
-				maxResults: "50",
-				order: "date",
+				part: 'snippet',
+				maxResults: '50',
+				order: 'date',
 				playlistId: uploadsPlaylistId,
 				key: YOUTUBE_API_KEY,
 			});

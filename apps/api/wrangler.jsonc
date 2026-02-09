@@ -3,9 +3,7 @@
 	"name": "cmd-api",
 	"main": "src/server.ts",
 	"compatibility_date": "2024-04-01",
-	"compatibility_flags": [
-		"nodejs_compat"
-	],
+	"compatibility_flags": ["nodejs_compat"],
 	"routes": [
 		{
 			"pattern": "api.espoca.bot/*",

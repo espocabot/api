@@ -1,13 +1,12 @@
-import { Hono } from "hono";
-
-import type { HonoEnv } from "@/definitions/config.ts";
-import { TikTokProvider } from "@/providers/tiktok.ts";
+import type { HonoEnv } from '@/definitions/config.ts';
+import { TikTokProvider } from '@/providers/tiktok.ts';
+import { Hono } from 'hono';
 
 const tiktok = new Hono<HonoEnv>();
 
-tiktok.get("/:handle/latest", async (c) => {
-	const t = c.get("t");
-	const { "text-format": textFormat, "custom-text": customText } =
+tiktok.get('/:handle/latest', async (c) => {
+	const t = c.get('t');
+	const { 'text-format': textFormat, 'custom-text': customText } =
 		c.req.query();
 	const { handle } = c.req.param();
 
@@ -15,11 +14,11 @@ tiktok.get("/:handle/latest", async (c) => {
 		const provider = new TikTokProvider();
 		const latest = await provider.getLatestVideo(handle);
 
-		// @ts-ignore
+		// @ts-expect-error
 		return c.text(provider.getLatestVideoText(latest, textFormat, customText));
-	} catch (error) {
+	} catch {
 		return c.json(
-			{ error: t("social.tiktok.error.latest-video", { handle }) },
+			{ error: t('social.tiktok.error.latest-video', { handle }) },
 			500,
 		);
 	}

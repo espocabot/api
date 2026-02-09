@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const getCountdownToDateTimeQuerySchema = z.object({
 	datetime: z
@@ -7,10 +7,10 @@ export const getCountdownToDateTimeQuerySchema = z.object({
 		.describe(
 			"The date and time to count down to, in ISO 8601 format (e.g., '2023-12-31T23:59:59Z')",
 		),
-	"text-format": z
-		.union([z.literal("full"), z.literal("short")])
+	'text-format': z
+		.union([z.literal('full'), z.literal('short')])
 		.optional()
-		.default("full")
+		.default('full')
 		.describe(
 			"Format of the countdown text. 'full' for detailed format, 'short' for abbreviated format",
 		),
@@ -18,4 +18,4 @@ export const getCountdownToDateTimeQuerySchema = z.object({
 
 export const getCountdownToDateTimeResponseSchema = z
 	.string()
-	.describe("Countdown in days, hours, minutes, and seconds");
+	.describe('Countdown in days, hours, minutes, and seconds');

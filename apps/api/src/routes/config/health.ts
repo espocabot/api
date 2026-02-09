@@ -1,6 +1,6 @@
-import { OK } from "@/definitions/http-status-code.ts";
-import { createRouter } from "@/lib/create-router.ts";
-import { z } from "zod";
+import { OK } from '@/definitions/http-status-code.ts';
+import { createRouter } from '@/lib/create-router.ts';
+import { z } from 'zod';
 
 const getHealthCheckResponseSchema = z.object({
 	status: z.string(),
@@ -9,15 +9,15 @@ const getHealthCheckResponseSchema = z.object({
 
 const health = createRouter().openapi(
 	{
-		method: "get",
-		path: "/health",
-		summary: "Health check endpoint",
-		tags: ["Configuration"],
+		method: 'get',
+		path: '/health',
+		summary: 'Health check endpoint',
+		tags: ['Configuration'],
 		responses: {
 			[OK]: {
-				description: "Health check response",
+				description: 'Health check response',
 				content: {
-					"application/json": {
+					'application/json': {
 						schema: getHealthCheckResponseSchema,
 					},
 				},
@@ -27,7 +27,7 @@ const health = createRouter().openapi(
 	async (c) => {
 		return c.json(
 			{
-				status: "ok",
+				status: 'ok',
 				timestamp: Date.now(),
 			},
 			OK,
