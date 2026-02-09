@@ -27,8 +27,8 @@
         "wrangler": "^4.4.0",
       },
     },
-    "apps/web": {
-      "name": "@cmd/web",
+    "apps/docs": {
+      "name": "@cmd/docs",
       "version": "0.1.0",
       "dependencies": {
         "class-variance-authority": "^0.7.1",
@@ -161,9 +161,9 @@
 
     "@cmd/api": ["@cmd/api@workspace:apps/api"],
 
-    "@cmd/tsconfig": ["@cmd/tsconfig@workspace:packages/tsconfig"],
+    "@cmd/docs": ["@cmd/docs@workspace:apps/docs"],
 
-    "@cmd/web": ["@cmd/web@workspace:apps/web"],
+    "@cmd/tsconfig": ["@cmd/tsconfig@workspace:packages/tsconfig"],
 
     "@cspotcode/source-map-support": ["@cspotcode/source-map-support@0.8.1", "", { "dependencies": { "@jridgewell/trace-mapping": "0.3.9" } }, "sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw=="],
 
